@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tugas UTS</title>
+</head>
+<body>
+
+    <div id="isi" class="content"></div>
+    <img id="poto">
+    <div id="clock"></div>
+   
+    <div id="message" style="display: none; background: lightgreen;">
+        Pemesanan Berhasil
+    </div>
+    <button id="btn-submit">Pesan Sekarang</button>
+
+    <div id="pesan" style="display: none; background: red;">
+        Proses Pembatalan Berhasil
+    </div>
+    <button id="submit">Batal</button>
+
+
+    <p>Klik Hewan Yang Kamu Pilih</p>
+    
+    <form>
+        <input type="radio" name="hewan" id="kucing1" value="kucing1"> Kucing Marah
+        <input type="radio" name="hewan" id="kucing2" value="kucing2"> Kucing Stress
+        <input type="radio" name="hewan" id="kucing3" value="kucing3"> Kucing Wibu
+        <input type="radio" name="hewan" id="kucing4" value="kucing4"> Bungkus kucing
+    
+    </form>
+
+    <script type="text/javascript">
+        const buah = [
+            "Buah Pepaya",
+            "Buah Jeruk",
+            "Buah Mangga",
+            "Buah Mentega",
+            "Buah Durian",
+         ];
+         for (let i = 0; i<buah.length;i++){
+            document.write("<br/>" + i + ". " + buah[i]+"<br/>")
+
+         };
+
+    const content = document.getElementById("isi");
+
+    const motto = document.createElement("h1");
+    motto.textContent = "Selamat Ujian Framework JS";
+    content.appendChild(motto);
+
+    const nama = document.createElement("p");
+    nama.textContent = "Baiq Indri Astuti";
+    content.appendChild(nama);
+
+    const nim = document.createElement("p");
+    nim.textContent = "SI17200013";
+    content.appendChild(nim);
+
+    const jurusan = document.createElement("p");
+    jurusan.textContent = "SISTEM INFROMASI";
+    content.appendChild(jurusan);
+
+    const tanggal = document.createElement("p");
+    tanggal.textContent = "Rabu, 09 November 2022";
+    content.appendChild(tanggal);
+
+    const gambar = document.getElementById("poto");
+       const src = document.createAttribute("src");
+       src.value = "assets/66.jpg";
+       gambar.setAttributeNode(src);
+
+     function soal3() {
+         var a_p = "";
+         var today = new Date();
+         var curr_hour = today.getHours();
+         var curr_minute = today.getMinutes();
+         var curr_second = today.getSeconds();
+         if (curr_hour < 11) {
+             a_p = "AM, Selamat Pagi, ayo beraktivitas, jangan malas";
+         } else if (curr_hour <= 14) {
+             a_p = "PM, Selamat Siang, selamat tidur siang";
+         } else if (curr_hour <= 19) {
+             a_p = "PM, Selamat Sore ya";
+         } else if (curr_hour <= 24) {
+             a_p = "PM, Selamat Malam dan selamat beristirahat ya";
+         }
+         if (curr_hour == 0) {
+             curr_hour = 24;
+         }
+         if (curr_hour > 24) {
+             curr_hour = curr_hour - 24;
+         }
+         curr_hour = checkTime(curr_hour);
+         curr_minute = checkTime(curr_minute);
+         curr_second = checkTime(curr_second);
+         var jam = document.getElementById('clock').innerHTML = curr_hour + ":" + curr_minute + ":" + curr_second + " " + a_p ;
+            const masuk = confirm("Anda yakin mau masuk?");
+            if (masuk) {
+                const name = prompt("Siapa Nama Anda?");
+                alert(`Hello ${name} sekarang sudah menunjukkan pukul ${jam}`);
+            } else {
+                alert("Bye Bye");
+            }
+        }
+        soal3();
+
+        function checkTime(i) {
+            if (i < 10) {
+                i = "0" + i;
+            }
+            return i;
+        }
+    
+const hotel = {
+    Namahotel : "Hotel Dream",
+    alamat : "jalan mimpi No. 7, Kompleks Neo City",
+    jkamar : "23 kamar",
+    fasilitas : "free wifi, diskon 20% untuk pelanggan baru",
+    klasifikasi : "bintang 5",
+    boking : function(){
+        const eventRegisterComplete = new Event('register-complete');
+        const messageElement = document.getElementById('message');
+        const btnSubmit = document.getElementById('btn-submit');
+        document.addEventListener('register-complete', function (e) {
+            messageElement.style.display = "flex";
+        });
+        btnSubmit.addEventListener('click', function (e) {
+            document.dispatchEvent(eventRegisterComplete);
+        });
+    },
+    batal : function(){
+        const eventRegisterComplete = new Event('cancle-complete');
+        const messageElement = document.getElementById('pesan');
+        const btnSubmit = document.getElementById('submit');
+        document.addEventListener('cancle-complete', function (e) {
+            messageElement.style.display = "flex";
+        });
+        btnSubmit.addEventListener('click', function (e) {
+            document.dispatchEvent(eventRegisterComplete);
+        });
+
+    },
+};
+hotel.boking();
+hotel.batal();
+
+   
+        const img = document.createElement('img');
+            const input = document.querySelectorAll('input');
+            const tagScript = document.querySelector('script');
+
+            const appearEmoticon = (hewan = '') => {
+                img.setAttribute('src', 'assets/' + hewan + '.jpeg',);
+                document.body.insertBefore(img, tagScript);
+            };
+
+            input.forEach((inp) => {
+                inp.addEventListener('click', function (event) {
+                    switch (event.target.id) {
+                        case 'kucing1':
+                            appearEmoticon(event.target.id);
+                            break;
+                        case 'kucing2':
+                            appearEmoticon(event.target.id);
+                            break;
+                        case 'kucing3':
+                            appearEmoticon(event.target.id);
+                            break;
+                        case 'kucing4':
+                            appearEmoticon(event.target.id);
+                            break;
+                    }
+                });
+            });
+    </script>
+</body>
+</html>
